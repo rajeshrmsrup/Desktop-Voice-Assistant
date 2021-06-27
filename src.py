@@ -17,6 +17,7 @@ import speech_recognition as sr
 import datetime
 import os
 import sys
+import requests
 import re
 import webbrowser
 import smtplib
@@ -151,17 +152,26 @@ def assistant(cmd):
                 print(e)
 
     #current weather
-    elif 'current weather' in cmd:
-        reg_ex = re.search('current weather in (.*)', cmd)
-        if reg_ex:
-            city = reg_ex.group(1)
-            owm = OWM(API_key='*****************')
-            obs = owm.weather_at_place(city)
-            w = obs.get_weather()
-            k = w.get_status()
-            x = w.get_temperature(unit='celsius')
-            speak('Current weather in %s is %s. The maximum temperature is %0.2f and the minimum temperature is %0.2f degree celcius' % (city, k, x['temp_max'], x['temp_min']))
-
+    elif "weather" in cmd:
+            api_key="8ef61edcf1c576d65d836254e11ea420"
+            base_url="https://api.openweathermap.org/data/2.5/weather?"
+            speak("whats the city name")
+            city_name=myCmd()
+            complete_url=base_url+"appid="+api_key+"&q="+city_name
+            response = requests.get(complete_url)
+            x=response.json()
+            if x["cod"]!="404":
+                y=x["main"]
+                current_temperature = y["temp"]
+                current_humidiy = y["humidity"]
+                z = x["weather"]
+                weather_description = z[0]["description"]
+                print('Temperature in kelvin unit :', str(current_temperature))
+                speak('Temperature is :' + str(current_temperature))
+                print('humidity :', str(current_humidiy) + '%')
+                speak('humidity is ' + str(current_humidiy))
+                print('description :', str(weather_description))
+                speak('description  ' + str(weather_description))
     #time
     elif 'time' in cmd:
         import datetime
