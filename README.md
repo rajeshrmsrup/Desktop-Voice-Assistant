@@ -1,7 +1,7 @@
 # Desktop-Voice-Assistant
 A project to build an AI voice assistant using Python . The Voice assistant interacts with the humans to perform basic tasks.
 ****The implemented Voice assistant can perform the following tasks:****
-1. Opens a wepage : Youtube, G-Mail, Google Chrome, StackOverflow
+1. Opens a webpage : Youtube, G-Mail, Google Chrome, StackOverflow
 2. Predicts time
 3. Captures a photo
 4. Fetch Top headlines from Times of India
