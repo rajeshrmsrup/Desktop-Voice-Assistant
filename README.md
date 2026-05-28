@@ -12,5 +12,4 @@ A project to build an AI voice assistant using Python . The Voice assistant inte
 9. Turn off your program when required
 .....And More.....
 
-
 You can read this article to understand step by step approach to build this voice assistant.
